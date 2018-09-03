@@ -1,0 +1,24 @@
+sctructure checker
+simpleTest
+sortTest
+invalidIdTest
+class oneOf
+
+
+scructure:
+{
+    chlen: { $type: String, $nullable: false, $minLength: 22, $allowedChars: 'chlen' },
+    qwerty: {
+        $nullable: true,
+        chlen: {
+            $type: String,
+        }
+    }
+}
+
+{
+    chlen: '123123',
+    qwerty: {
+        chlen: 'asd',
+    }
+}
