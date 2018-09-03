@@ -1,5 +1,5 @@
 {
-	"name": "simple-test",
+	"name": "simple-tests",
 	"version": "0.1.0",
 	"dependencies": {
 		"chai": "^4.1.2",
