@@ -3,6 +3,8 @@ simpleTest
 sortTest
 invalidIdTest
 class oneOf
+debugMode to print response.body and other info
+configure messages
 
 
 scructure:

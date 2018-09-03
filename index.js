@@ -1,10 +1,17 @@
-const common = require('./common');
+const {
+	test,
+	executeTest,
+	executeMultiTest,
+	executeFieldMultiTest,
+
+} = require('./common');
 const TypeTests = require('./class.TypeTests');
 const utils = require('./utils');
 
-
 module.exports = {
-	...common,
-	utils,
+	test,
+	executeTest,
+	executeMultiTest,
+	executeFieldMultiTest,
 	TypeTests,
 };

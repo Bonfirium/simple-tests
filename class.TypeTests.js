@@ -1,7 +1,9 @@
+const randomString = require('randomstring');
+
 const TestParams = require('./class.TestParams.js');
 const Messages = require('./class.Messages.js');
-const { concatObjects } = require('./utils');
-const { executeFieldMultiTest, executeMultiTest } = require('./common');
+const { concatObjects, VALID_OBJECT_ID } = require('./utils');
+const { executeFieldMultiTest, executeMultiTest, executeTest } = require('./common');
 
 class TypeTests extends TestParams {
 
@@ -11,6 +13,8 @@ class TypeTests extends TestParams {
 			gte: (comparision) => `Must be greater than or equal to ${comparision}`,
 			gt: (comparision) => `Must be greater than ${comparision}`,
 			safeInteger: () => 'Is not a safe integer',
+			objectId: () => 'Id has invalid format',
+			boolean: () => 'Invalid boolean',
 		});
 	}
 
@@ -46,6 +50,36 @@ class TypeTests extends TestParams {
 			],
 		));
 	}
+
+	boolean(field, { status = 400, send = {}, expect = this.messages.get('boolean', field) } = {}) {
+		describe('boolean test', () => {
+			it('valid', () => executeFieldMultiTest(...this._paramsArray, field, {
+				status: 200,
+				sendValues: [true, 'true', false, 'false'],
+			}));
+			it('invalid', () => executeFieldMultiTest(...this._paramsArray, field, {
+				status, expect,
+				sendValues: [randomString.generate(3), randomString.generate(6)],
+			}));
+		});
+	}
+
+	objectId(field, { status = 400, send = {}, onlyInvalid = false, expect = this.messages.get('objectId', field) } = {}) {
+		describe('objectId test', () => {
+			it('invalid', () => executeTest(...this._paramsArray, {
+				status: 400, expect,
+				send: { ...send, [field]: randomString.generate(20) },
+			}));
+
+			if (onlyInvalid) return;
+			it('valid', () => executeTest(...this._paramsArray, {
+				status: 200,
+				send: { ...send, [field]: VALID_OBJECT_ID },
+			}));
+		});
+	}
+
+
 
 }
 

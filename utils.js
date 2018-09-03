@@ -4,6 +4,8 @@ const chaiHttp = require('chai-http');
 require('chai').should();
 chai.use(chaiHttp);
 
+const VALID_OBJECT_ID = '0000000000000000000000000';
+
 const isError = (res, status) => {
 	res.should.have.status(status);
 	res.should.be.json;

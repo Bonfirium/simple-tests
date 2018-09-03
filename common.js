@@ -7,6 +7,10 @@ const { checkStatus, useNotEmpty, concatObjects } = require('./utils');
  * @param {Number} status
  * @param {Object} expect
  */
+function getParentByStatus(response, status) {
+	return response.body[status === 200 ? 'result' : 'error'];
+}
+
 function test(response, { status, expect } = {}) {
 	checkStatus(response, status);
 	const result = response.body[status === 200 ? 'result' : 'error'];
@@ -70,6 +74,10 @@ async function executeFieldMultiTest(agent, method, path, field, { status, expec
 	));
 }
 
+/**
+ * CommonFunctions
+ * @namespace CommonFunc
+ */
 module.exports = {
 	test, executeTest, executeMultiTest, executeFieldMultiTest,
 };
