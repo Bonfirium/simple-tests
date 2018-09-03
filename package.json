@@ -1,6 +1,15 @@
 {
 	"name": "simple-tests",
-	"version": "0.1.0",
+	"version": "0.1.1",
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:Bonfirium/simple-tests.git"
+	},
+	"author": "DemidMosko",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Bonfirium/simple-tests/issues"
+	},
 	"dependencies": {
 		"chai": "^4.1.2",
 		"chai-http": "^4.2.0"
