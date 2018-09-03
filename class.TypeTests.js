@@ -47,13 +47,6 @@ class TypeTests extends TestParams {
 		));
 	}
 
-	unsignedSafeInteger(field, { status = 400, expect, send = {} } = {}) {
-		describe('unsigned safe integer', () => {
-			this.safeInteger(field);
-			this.gte(field, 0, { status, expect, send });
-		});
-	}
-
 }
 
 module.exports = TypeTests;
